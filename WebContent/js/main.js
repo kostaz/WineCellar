@@ -59,7 +59,7 @@ var AppRouter = Backbone.Router.extend({
 
     routes: {
         "": "list",
-        "windes/:id": "wineDetails"
+        "wines/:id": "wineDetails"
     },
 
     list: function () {
