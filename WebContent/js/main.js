@@ -179,18 +179,30 @@ var AppRouter = Backbone.Router.extend({
 
     list: function () {
         this.wineList = new WineCollection();
-        this.wineListView = new WineListView({model: this.wineList});
-        this.wineList.fetch();
-        $('#sidebar').html(this.wineListView.render().el);
+        var self = this;
+        this.wineList.fetch({
+            success: function () {
+                self.wineListView = new WineListView({model: self.wineList});
+                $('#sidebar').html(self.wineListView.render().el);
+                if (self.requestedId) {
+                    self.wineDetails(self.requestedId);
+                }
+            }
+        });
     },
 
     wineDetails: function (id) {
-        this.wine = this.wineList.get(id);
-        if (app.wineView) {
-            app.wineView.close();
+        if (this.wineList) {
+            this.wine = this.wineList.get(id);
+            if (this.wineView) {
+                this.wineView.close();
+            }
+            this.wineView = new WineView({model: this.wine});
+            $("#content").html(this.wineView.render().el);
+        } else {
+            this.requestedId = id;
+            this.list();
         }
-        this.wineView = new WineView({model: this.wine});
-        $('#content').html(this.wineView.render().el);
     }
 
 });
