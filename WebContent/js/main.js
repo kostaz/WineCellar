@@ -89,13 +89,6 @@ window.WineView = Backbone.View.extend({
     change: function (event) {
         var target = event.target;
         console.log("changing " + target.id + " from: " + target.defaultValue + " to: " + target.value);
-        // try to add additional code from the tutorial.
-        // try to add additional code from the tutorial.
-        // try to add additional code from the tutorial.
-        // try to add additional code from the tutorial.
-        // try to add additional code from the tutorial.
-        // try to add additional code from the tutorial.
-        // try to add additional code from the tutorial.
     },
 
     saveWine: function () {
