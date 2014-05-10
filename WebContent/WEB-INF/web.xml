@@ -1,28 +1,30 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
-  <display-name>cellar</display-name>
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+	http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	metadata-complete="true">
 
-<servlet>
-	<servlet-name>Jersey</servlet-name>
-	<servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
-	<!-- 
-	<init-param>
-		<param-name>com.sun.jersey.config.property.packages</param-name>
-		<param-value>org.coenraets</param-value>
-	</init-param>
-	-->
+	<display-name>crm_sales_webapp</display-name>
+	<description>crm_sales_webapp</description>
 
-	<init-param>
-		<param-name>com.sun.jersey.config.property.packages</param-name>
-		<param-value>org.coenraets;org.codehaus.jackson.jaxrs</param-value>
-	</init-param>
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>/WEB-INF/conf/*-context.xml</param-value>
+	</context-param>
 
-	<load-on-startup>1</load-on-startup>
-</servlet>
+	<listener>
+		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+	</listener>
 
-<servlet-mapping>
-	<servlet-name>Jersey</servlet-name>
-	<url-pattern>/api/*</url-pattern>
-</servlet-mapping>
+	<servlet>
+		<servlet-name>CXFServlet</servlet-name>
+		<servlet-class>org.apache.cxf.transport.servlet.CXFServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
 
+	<servlet-mapping>
+		<servlet-name>CXFServlet</servlet-name>
+		<url-pattern>/services/*</url-pattern>
+	</servlet-mapping>
 </web-app>
