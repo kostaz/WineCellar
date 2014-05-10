@@ -22,7 +22,7 @@ window.WineListView = Backbone.View.extend({
     render: function (eventName) {
         _.each(this.model.models, function(wine) {
             $(this.el).append(new WineListItemView({model: wine}).render().el);
-        });
+        }, this);
         return this;
     }
 
@@ -47,6 +47,7 @@ window.WineView = Backbone.View.extend({
 
     render: function (eventName) {
         $(this.el).html(this.template(this.model.toJSON()));
+        return this;
     }
 
 });
