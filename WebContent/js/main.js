@@ -158,12 +158,7 @@ window.HeaderView = Backbone.View.extend({
     },
 
     newWine: function (event) {
-        if (app.wineView) {
-            app.wineView.close();
-        }
-
-        app.wineView = new WineView({model: new Wine()});
-        $("#content").html(app.wineView.render().el);
+        app.navigate("wines/new", true);
         return false;
     }
 });
@@ -175,6 +170,7 @@ var AppRouter = Backbone.Router.extend({
 
     routes: {
         "": "list",
+        "wines/new": "newWine",
         "wines/:id": "wineDetails"
     },
 
@@ -208,6 +204,14 @@ var AppRouter = Backbone.Router.extend({
             this.requestedId = id;
             this.list();
         }
+    },
+
+    newWine: function () {
+        if (app.wineView) {
+            app.wineView.close();
+        }
+        app.wineView = new WineView({model: new Wine()});
+        $("#content").html(app.wineView.render().el);
     }
 
 });
