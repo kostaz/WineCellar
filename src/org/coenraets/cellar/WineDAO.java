@@ -17,7 +17,7 @@ public class WineDAO {
         wine.setCountry("DummyCountry");
         wine.setRegion("DummyRegion");
         wine.setYear("DummyYear");
-        wine.setPicture("DummyPicture");
+        wine.setPicture("block_nine.jpg");
         wine.setDescription("DummyDescription");
 
         wines.add(wine);
