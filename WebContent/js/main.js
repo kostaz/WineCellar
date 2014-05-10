@@ -109,7 +109,12 @@ window.WineView = Backbone.View.extend({
         });
 
         if (this.model.isNew()) {
-            app.wineList.create(this.model);
+            var self = this;
+            app.wineList.create(this.model, {
+                success: function () {
+                    app.navigate("wines/" + self.model.id, false);
+                }
+            });
         } else {
             this.model.save();
         }
